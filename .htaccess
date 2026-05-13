@@ -1,13 +1,13 @@
 RewriteEngine On
 
-# Redirect /heritagehaat/page.html to /heritagehaat/page
+# Redirect .html to extensionless
 RewriteCond %{THE_REQUEST} \s/+heritagehaat/([^\s?]+?)\.html[\s?] [NC]
 RewriteRule ^heritagehaat/(.+)\.html$ /heritagehaat/$1 [R=301,L,NE]
 
-# Serve extensionless URLs from matching .html files
+# Internally serve extensionless URL from .html file
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{DOCUMENT_ROOT}/$1.html -f
-RewriteRule ^(.+)$ /$1.html [L]
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^heritagehaat/(.+)$ /heritagehaat/$1.html [L]
 
 DirectoryIndex index.html
