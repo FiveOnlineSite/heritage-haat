@@ -262,22 +262,7 @@ footer { background: var(--dusk); padding: 60px 72px 36px; margin-top: 2px; }
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">Heritage <span>Haat</span></a>
-  <ul class="nav-links">
-    <li><a href="#">Collections</a></li>
-    <li><a href="#" class="active">Wanderer Edit</a></li>
-    <li><a href="#">Our Artisans</a></li>
-    <li><a href="#">Blog</a></li>
-  </ul>
-  <div class="nav-right">
-    <a href="#" class="nav-cart">Cart · 0</a>
-    <button class="hamburger" onclick="document.querySelector('.mob-menu').classList.toggle('open')">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
+<?php include __DIR__ . '/corephp/header.php'; ?>
 <div class="mob-menu">
   <a href="#">Collections</a>
   <a href="#">The Wanderer Edit</a>
@@ -621,51 +606,6 @@ footer { background: var(--dusk); padding: 60px 72px 36px; margin-top: 2px; }
   </div>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="f-grid">
-    <div>
-      <a href="#" class="f-logo">Heritage <span>Haat</span></a>
-      <p class="f-tag">Handcrafted bags from the artisan families of Kutch, Gujarat. Every purchase supports a living tradition.</p>
-      <div class="f-contact">
-        <a href="/cdn-cgi/l/email-protection#0a65786e6f784a626f78637e6b6d6f626b6b7e24696567"><span class="__cf_email__" data-cfemail="422d30262730022a27302b362325272a2323366c212d2f">[email&#160;protected]</span></a>
-        <a href="tel:+919322279809">+91 93222 79809</a>
-        <a href="#">WhatsApp us directly</a>
-      </div>
-    </div>
-    <div>
-      <div class="f-col-h">Shop</div>
-      <ul class="f-links">
-        <li><a href="#">The Wanderer Edit</a></li>
-        <li><a href="#">Sling Bags</a></li>
-        <li><a href="#">Totes & Handbags</a></li>
-        <li><a href="#">Clutches & Potlis</a></li>
-        <li><a href="#">Gift Sets</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="f-col-h">Brand</div>
-      <ul class="f-links">
-        <li><a href="#">Our Story</a></li>
-        <li><a href="#">Our Artisans</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Instagram</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="f-col-h">Help</div>
-      <ul class="f-links">
-        <li><a href="#">Shipping Policy</a></li>
-        <li><a href="#">Returns & Refunds</a></li>
-        <li><a href="#">Track Your Order</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="f-bottom">
-    <p class="f-copy">© 2025 Heritage Haat. The Wanderer Edit is a limited release.</p>
-    <p class="f-made">Crafted in <span>Kutch</span> · For every <span>wanderer</span></p>
-  </div>
-</footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><scrip
+<?php include __DIR__ . '/corephp/footer.php'; ?>
+</body>
+</html>
