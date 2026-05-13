@@ -1263,10 +1263,14 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="footer-copy">© 2025 Heritage Haat. All rights reserved.</p>
+    <p class="footer-copy">© <span class="js-current-year">2025</span> Heritage Haat. All rights reserved.</p>
     <p class="footer-india">Made with care · <span>Crafted in India</span></p>
   </div>
-</footer>
-
+ </footer>
+<script>
+  document.querySelectorAll('.js-current-year').forEach((el) => {
+    el.textContent = new Date().getFullYear();
+  });
+</script>
 </body>
 </html>
