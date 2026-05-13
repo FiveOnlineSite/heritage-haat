@@ -1,13 +1,10 @@
 RewriteEngine On
 
-# Redirect .html to extensionless
-RewriteCond %{THE_REQUEST} \s/+heritagehaat/([^\s?]+?)\.html[\s?] [NC]
-RewriteRule ^heritagehaat/(.+)\.html$ /heritagehaat/$1 [R=301,L,NE]
+# Redirect .html to clean URL
+RewriteCond %{THE_REQUEST} \s/+(.*)\.html[\s?] [NC]
+RewriteRule ^(.+)\.html$ /heritagehaat/$1 [R=301,L]
 
-# Internally serve extensionless URL from .html file
+# Internally rewrite clean URL to .html
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^heritagehaat/(.+)$ /heritagehaat/$1.html [L]
-
-DirectoryIndex index.html
+RewriteRule ^([^/.]+)$ $1.html [L]
