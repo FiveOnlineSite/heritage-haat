@@ -655,12 +655,16 @@ footer { background: var(--dusk); padding: 60px 72px 36px; margin-top: 2px; }
     </div>
   </div>
   <div class="f-bottom">
-    <p class="f-copy">© 2025 Heritage Haat. The Wanderer Edit is a limited release.</p>
+    <p class="f-copy">© <span class="js-current-year">2025</span> Heritage Haat. The Wanderer Edit is a limited release.</p>
     <p class="f-made">Crafted in <span>Kutch</span> · For every <span>wanderer</span></p>
   </div>
 </footer>
 
 <script>
+document.querySelectorAll('.js-current-year').forEach((el) => {
+  el.textContent = new Date().getFullYear();
+});
+
 document.querySelectorAll('.fbtn').forEach(b => {
   b.addEventListener('click', function() {
     document.querySelectorAll('.fbtn').forEach(x => x.classList.remove('active'));

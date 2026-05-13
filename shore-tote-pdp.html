@@ -1240,11 +1240,15 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2025 Heritage Haat. All rights reserved.</span>
+        <span>© <span class="js-current-year">2025</span> Heritage Haat. All rights reserved.</span>
         <span>Handcrafted in Kutch, Gujarat, India.</span>
       </div>
     </div>
   </footer>
-
+  <script>
+    document.querySelectorAll('.js-current-year').forEach((el) => {
+      el.textContent = new Date().getFullYear();
+    });
+  </script>
 </body>
 </html>
