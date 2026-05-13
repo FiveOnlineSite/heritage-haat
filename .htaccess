@@ -3,10 +3,10 @@ RewriteEngine On
 # Parse .html files as PHP so shared include files can be used without renaming pages.
 AddType application/x-httpd-php .html
 
-# Redirect explicit .html URLs to extensionless canonical URLs.
-# Use an absolute-path redirect target to avoid relative path duplication.
-RewriteCond %{THE_REQUEST} \s/+([^\s?]+?)\.html(?:[\s?]|$) [NC]
-RewriteRule ^ /%1 [R=301,L,NE]
+# Canonicalize only public /heritagehaat/*.html URLs to extensionless URLs.
+# Using REQUEST_URI avoids accidental matches against server filesystem paths.
+RewriteCond %{REQUEST_URI} ^/heritagehaat/(.+)\.html$ [NC]
+RewriteRule ^ /heritagehaat/%1 [R=301,L,NE]
 
 # Serve extensionless URLs from matching .html files.
 RewriteCond %{REQUEST_FILENAME} !-d
