@@ -943,7 +943,26 @@
     </span>
   </div>
 
-  <?php include __DIR__ . '/corephp/header.php'; ?>
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">Heritage <span>Haat</span></a>
+    <ul class="nav-links">
+      <li><a href="/collections/wanderer-edit">The Wanderer Edit</a></li>
+      <li><a href="/pages/about">Our Craft</a></li>
+      <li><a href="/pages/artisans">Artisans</a></li>
+      <li><a href="/pages/care">Care</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="/cart" class="nav-cart">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Cart
+        <div class="cart-count">0</div>
+      </a>
+      <div class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
 
   <!-- MOBILE NAV -->
   <div class="mobile-nav" id="mobileNav">
@@ -1186,6 +1205,50 @@
     </div>
   </section>
 
-  <?php include __DIR__ . '/corephp/footer.php'; ?>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo" style="color:var(--cream);">Heritage <span>Haat</span></a>
+          <p>Handcrafted bags from the artisan families of Kutch, Gujarat. Limited editions. No restocks. Made to go everywhere you do.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="/collections/wanderer-edit">The Wanderer Edit</a></li>
+            <li><a href="/collections/all">All Products</a></li>
+            <li><a href="/pages/gift">Gift a Piece</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>The Craft</h4>
+          <ul>
+            <li><a href="/pages/artisans">Our Artisans</a></li>
+            <li><a href="/pages/techniques">Craft Techniques</a></li>
+            <li><a href="/pages/care">Caring for Your Bag</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="/pages/shipping">Shipping & Returns</a></li>
+            <li><a href="/pages/faq">FAQs</a></li>
+            <li><a href="https://wa.me/919XXXXXXXXX">WhatsApp Us</a></li>
+            <li><a href="/pages/privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span class="js-current-year">2025</span> Heritage Haat. All rights reserved.</span>
+        <span>Handcrafted in Kutch, Gujarat, India.</span>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.querySelectorAll('.js-current-year').forEach((el) => {
+      el.textContent = new Date().getFullYear();
+    });
+  </script>
 </body>
 </html>
