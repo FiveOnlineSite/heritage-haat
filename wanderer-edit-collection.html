@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wanderer Edit — Heritage Haat</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sand: #F2EDE4;
+  --dusk: #1A1410;
+  --dusk-soft: #2E2218;
+  --ember: #C4622A;
+  --ember-light: #E07840;
+  --gold: #B8963A;
+  --mist: #8C7B6B;
+  --cream: #FAF7F1;
+  --border: rgba(26,20,16,0.1);
+  --border-warm: rgba(196,98,42,0.2);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Jost', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--dusk);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(250,247,241,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 400;
+  color: var(--dusk); text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.nav-logo span { color: var(--ember); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 12px; font-weight: 400; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mist);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--ember); }
+.nav-cart {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--dusk);
+  text-decoration: none;
+  border: 0.5px solid var(--border);
+  padding: 8px 18px; border-radius: 1px;
+  transition: all 0.2s;
+}
+.nav-cart:hover { background: var(--dusk); color: var(--cream); }
+
+/* ── HERO BANNER ── */
+.hero {
+  min-height: 92vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 57px;
+  overflow: hidden;
+}
+.hero-left {
+  position: relative;
+  overflow: hidden;
+  background: var(--dusk);
+}
+.hero-left img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  opacity: 0.85;
+  transition: transform 8s ease;
+}
+.hero-left:hover img { transform: scale(1.04); }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(26,20,16,0.5) 0%, transparent 70%);
+}
+.hero-badge-wrap {
+  position: absolute; top: 40px; left: 40px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.hero-pill {
+  display: inline-block;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; color: white;
+  background: var(--ember);
+  padding: 6px 14px; border-radius: 1px;
+  width: fit-content;
+}
+.hero-pill.gold { background: var(--gold); }
+
+.hero-right {
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: 80px 72px 80px 64px;
+  background: var(--sand);
+  position: relative;
+}
+.hero-right::before {
+  content: 'W';
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 280px; font-weight: 400; font-style: italic;
+  color: rgba(196,98,42,0.06);
+  right: -20px; bottom: -40px;
+  line-height: 1; pointer-events: none;
+  user-select: none;
+}
+.collection-label {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ember);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.collection-label::before {
+  content: ''; display: block;
+  width: 32px; height: 1px; background: var(--ember);
+}
+.hero-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 5.5vw, 76px);
+  font-weight: 400; line-height: 1.05;
+  color: var(--dusk); margin-bottom: 8px;
+}
+.hero-h1 em { font-style: italic; color: var(--ember); }
+.hero-sub-title {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2vw, 26px);
+  font-weight: 400; font-style: italic;
+  color: var(--mist); margin-bottom: 32px;
+  letter-spacing: 0.02em;
+}
+.hero-desc {
+  font-size: 15px; font-weight: 300;
+  color: var(--mist); line-height: 1.85;
+  max-width: 420px; margin-bottom: 40px;
+}
+.hero-stats {
+  display: flex; gap: 0;
+  border: 0.5px solid var(--border-warm);
+  margin-bottom: 40px;
+  width: fit-content;
+}
+.stat {
+  padding: 18px 28px;
+  border-right: 0.5px solid var(--border-warm);
+  text-align: center;
+}
+.stat:last-child { border-right: none; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 400;
+  color: var(--ember); display: block; line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-label {
+  font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mist);
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--cream);
+  background: var(--dusk);
+  padding: 16px 36px; text-decoration: none;
+  border-radius: 1px; transition: all 0.25s;
+  width: fit-content;
+}
+.hero-cta:hover { background: var(--ember); gap: 18px; }
+.hero-cta-arrow { font-size: 18px; transition: transform 0.25s; }
+.hero-cta:hover .hero-cta-arrow { transform: translateX(4px); }
+
+/* ── MARQUEE ── */
+.marquee-wrap {
+  background: var(--ember);
+  padding: 12px 0; overflow: hidden;
+}
+.marquee-track {
+  display: inline-flex; white-space: nowrap;
+  animation: scroll 20s linear infinite;
+}
+.marquee-item {
+  display: inline-flex; align-items: center; gap: 16px;
+  padding: 0 24px;
+  font-size: 11px; font-weight: 400; letter-spacing: 0.16em;
+  text-transform: uppercase; color: rgba(255,255,255,0.85);
+}
+.marquee-sep { color: rgba(255,255,255,0.4); font-size: 8px; }
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ── STORY STRIP ── */
+.story-strip {
+  display: grid; grid-template-columns: 1fr 2px 1fr 2px 1fr;
+  background: var(--dusk);
+  overflow: hidden;
+}
+.story-divider { background: rgba(255,255,255,0.06); }
+.story-item {
+  padding: 52px 48px;
+  position: relative; overflow: hidden;
+  transition: background 0.3s;
+}
+.story-item:hover { background: rgba(255,255,255,0.03); }
+.story-num {
+  font-family: var(--font-display);
+  font-size: 64px; font-weight: 400; font-style: italic;
+  color: rgba(196,98,42,0.15);
+  position: absolute; top: 16px; right: 24px;
+  line-height: 1;
+}
+.story-title {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 400;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 12px;
+}
+.story-body {
+  font-size: 14px; font-weight: 300;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.8;
+}
+.story-body em {
+  color: var(--ember); font-style: normal;
+}
+
+/* ── COLLECTION HEADER ── */
+.collection-header {
+  padding: 80px 80px 48px;
+  display: flex; align-items: flex-end;
+  justify-content: space-between;
+}
+.collection-header-left {}
+.col-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ember);
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.col-eyebrow::before {
+  content: ''; width: 20px; height: 1px; background: var(--ember);
+}
+.col-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 400; line-height: 1.15;
+  color: var(--dusk);
+}
+.col-h2 em { font-style: italic; color: var(--ember); }
+.col-note {
+  font-size: 13px; font-weight: 300;
+  color: var(--mist); margin-top: 12px;
+  max-width: 480px; line-height: 1.7;
+}
+.filter-row {
+  display: flex; align-items: center; gap: 8px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  font-size: 11px; font-weight: 400; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mist);
+  background: transparent;
+  border: 0.5px solid var(--border);
+  padding: 8px 18px; border-radius: 1px;
+  cursor: pointer; transition: all 0.2s;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--dusk); color: var(--cream);
+  border-color: var(--dusk);
+}
+
+/* ── PRODUCT GRID ── */
+.product-grid {
+  padding: 0 80px 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--border);
+}
+
+/* Featured first item — spans 2 cols */
+.product-card {
+  background: var(--cream);
+  position: relative; cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.product-card.featured {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+.product-card:hover { z-index: 10; }
+
+.card-img {
+  width: 100%; overflow: hidden;
+  position: relative;
+}
+.product-card.featured .card-img { height: 580px; }
+.product-card:not(.featured) .card-img { height: 480px; }
+
+.card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+  display: block;
+}
+.product-card:hover .card-img img { transform: scale(1.06); }
+
+/* Edition badge */
+.edition-badge {
+  position: absolute; top: 16px; left: 16px;
+  font-size: 9px; font-weight: 500; letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: rgba(26,20,16,0.85);
+  color: rgba(255,255,255,0.9);
+  padding: 5px 12px;
+  backdrop-filter: blur(4px);
+}
+.edition-badge.ember {
+  background: var(--ember);
+  color: white;
+}
+.edition-badge.gold-bg {
+  background: var(--gold);
+  color: white;
+}
+
+/* Sold indicator */
+.units-left {
+  position: absolute; bottom: 16px; right: 16px;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(250,247,241,0.92);
+  color: var(--ember);
+  padding: 5px 12px;
+  backdrop-filter: blur(4px);
+}
+
+/* Quick add hover */
+.quick-add {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: var(--dusk);
+  color: var(--cream);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 14px;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.product-card:hover .quick-add { transform: translateY(0); }
+.quick-add:hover { background: var(--ember); cursor: pointer; }
+
+.card-info {
+  padding: 20px 24px 28px;
+}
+.card-craft {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ember);
+  margin-bottom: 6px;
+}
+.card-name {
+  font-family: var(--font-display);
+  font-size: 19px; font-weight: 400;
+  color: var(--dusk); line-height: 1.3;
+  margin-bottom: 6px;
+}
+.card-unique {
+  font-size: 12px; font-weight: 300; font-style: italic;
+  color: var(--mist); margin-bottom: 14px;
+  line-height: 1.5;
+}
+.card-bottom {
+  display: flex; align-items: center;
+  justify-content: space-between;
+}
+.card-price {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 400;
+  color: var(--dusk);
+}
+.card-shipping {
+  font-size: 11px; font-weight: 300;
+  color: var(--mist);
+}
+
+/* ── UNIQUE PROMISE ── */
+.unique-section {
+  background: var(--sand);
+  padding: 80px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.unique-left {}
+.unique-right {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; background: var(--border);
+}
+.unique-img-cell {
+  overflow: hidden; height: 260px;
+}
+.unique-img-cell img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transition: transform 0.5s ease;
+}
+.unique-img-cell:hover img { transform: scale(1.05); }
+
+.unique-quote {
+  padding: 36px 32px;
+  background: var(--dusk);
+  display: flex; flex-direction: column;
+  justify-content: center;
+}
+.unique-quote p {
+  font-family: var(--font-display);
+  font-size: 17px; font-style: italic; font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.65; margin-bottom: 16px;
+}
+.unique-quote cite {
+  font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ember); font-style: normal;
+}
+
+.unique-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ember);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.unique-eyebrow::before {
+  content: ''; width: 20px; height: 1px; background: var(--ember);
+}
+.unique-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3vw, 44px);
+  font-weight: 400; line-height: 1.2;
+  color: var(--dusk); margin-bottom: 24px;
+}
+.unique-h2 em { font-style: italic; color: var(--ember); }
+.unique-body {
+  font-size: 15px; font-weight: 300;
+  color: var(--mist); line-height: 1.85;
+  margin-bottom: 16px;
+}
+.unique-highlight {
+  padding: 20px 24px;
+  border-left: 2px solid var(--ember);
+  margin: 28px 0;
+}
+.unique-highlight p {
+  font-family: var(--font-display);
+  font-size: 18px; font-style: italic;
+  color: var(--dusk-soft); line-height: 1.55;
+}
+
+/* ── SHIPPING BAR ── */
+.shipping-bar {
+  background: var(--dusk);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.ship-item {
+  padding: 36px 32px;
+  border-right: 0.5px solid rgba(255,255,255,0.06);
+  display: flex; align-items: flex-start; gap: 16px;
+  transition: background 0.3s;
+}
+.ship-item:last-child { border-right: none; }
+.ship-item:hover { background: rgba(255,255,255,0.03); }
+.ship-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.ship-icon svg { width: 22px; height: 22px; stroke: var(--ember); }
+.ship-title {
+  font-family: var(--font-display);
+  font-size: 16px; font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 4px;
+}
+.ship-body {
+  font-size: 13px; font-weight: 300;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.6;
+}
+
+/* ── INSTAGRAM STRIP ── */
+.insta-section { padding: 80px 80px 0; }
+.insta-header {
+  display: flex; align-items: center;
+  justify-content: space-between; margin-bottom: 40px;
+}
+.insta-h2 {
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 400;
+  color: var(--dusk);
+}
+.insta-h2 em { font-style: italic; color: var(--ember); }
+.insta-handle {
+  font-size: 13px; font-weight: 300;
+  color: var(--mist); text-decoration: none;
+  border-bottom: 0.5px solid var(--border);
+  padding-bottom: 2px;
+  transition: color 0.2s;
+}
+.insta-handle:hover { color: var(--ember); }
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px; background: var(--border);
+}
+.insta-cell {
+  aspect-ratio: 1; overflow: hidden;
+  position: relative; cursor: pointer;
+}
+.insta-cell img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transition: transform 0.5s ease, filter 0.3s;
+}
+.insta-cell:hover img {
+  transform: scale(1.08);
+  filter: brightness(0.8);
+}
+.insta-overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.3s;
+}
+.insta-cell:hover .insta-overlay { opacity: 1; }
+.insta-icon {
+  color: white; font-size: 22px;
+  font-family: var(--font-display); font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dusk);
+  padding: 64px 80px 40px;
+  margin-top: 2px;
+}
+.footer-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px; padding-bottom: 48px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.07);
+  margin-bottom: 32px;
+}
+.f-logo {
+  font-family: var(--font-display);
+  font-size: 24px; font-weight: 400;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none; display: block;
+  margin-bottom: 14px;
+}
+.f-logo span { color: var(--ember); }
+.f-tagline {
+  font-size: 13px; font-weight: 300;
+  color: rgba(255,255,255,0.3);
+  line-height: 1.75; max-width: 260px;
+  margin-bottom: 24px;
+}
+.f-contact a {
+  display: block; font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none; margin-bottom: 5px;
+  transition: color 0.2s;
+}
+.f-contact a:hover { color: var(--ember); }
+.f-col-title {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 18px;
+}
+.f-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.f-links a {
+  font-size: 14px; font-weight: 300;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none; transition: color 0.2s;
+}
+.f-links a:hover { color: var(--ember); }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.f-copy { font-size: 12px; color: rgba(255,255,255,0.18); }
+.f-made {
+  font-family: var(--font-display);
+  font-size: 13px; font-style: italic;
+  color: rgba(255,255,255,0.18);
+}
+.f-made span { color: var(--ember); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade { animation: fadeUp 0.75s cubic-bezier(0.25,0.46,0.45,0.94) both; }
+.d1 { animation-delay: 0.1s; }
+.d2 { animation-delay: 0.25s; }
+.d3 { animation-delay: 0.4s; }
+.d4 { animation-delay: 0.55s; }
+.d5 { animation-delay: 0.7s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Heritage <span>Haat</span></a>
+  <ul class="nav-links">
+    <li><a href="#">Collections</a></li>
+    <li><a href="#" class="active">Wanderer Edit</a></li>
+    <li><a href="#">Our Artisans</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+  <a href="#" class="nav-cart">Cart · 0</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <img src="IMG_1655.JPG" alt="The Wanderer Edit — Heritage Haat Goa">
+    <div class="hero-overlay"></div>
+    <div class="hero-badge-wrap">
+      <span class="hero-pill">Limited Edition</span>
+      <span class="hero-pill gold">12 Designs Only</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="collection-label fade d1">The Wanderer Edit · 2025</div>
+    <h1 class="hero-h1 fade d2">Shot in <em>Goa.</em><br>Made in <em>Kutch.</em></h1>
+    <p class="hero-sub-title fade d3">Yours wherever you wander.</p>
+    <p class="hero-desc fade d4">
+      12 handpicked designs. One golden hour shoot on a Goa beach. Artisan-crafted using centuries-old Kutchi embroidery traditions. When these sell out, they don't come back — at least not exactly as they are.
+    </p>
+    <div class="hero-stats fade d4">
+      <div class="stat">
+        <span class="stat-num">12</span>
+        <span class="stat-label">Designs</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1</span>
+        <span class="stat-label">Shoot</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">0</span>
+        <span class="stat-label">Restocks</span>
+      </div>
+    </div>
+    <a href="#collection" class="hero-cta fade d5">
+      Shop the Edit <span class="hero-cta-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Handcrafted in Kutch <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Shot in Goa <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Limited to 12 designs <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">No two exactly alike <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">COD available <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">48hr Mumbai delivery <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Free returns <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Handcrafted in Kutch <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Shot in Goa <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Limited to 12 designs <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">No two exactly alike <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">COD available <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">48hr Mumbai delivery <span class="marquee-sep">✦</span></span>
+    <span class="marquee-item">Free returns <span class="marquee-sep">✦</span></span>
+  </div>
+</div>
+
+<!-- STORY STRIP -->
+<div class="story-strip">
+  <div class="story-item">
+    <div class="story-num">1</div>
+    <div class="story-title">Why only 12?</div>
+    <p class="story-body">We don't list everything we have. We list what we believe in. These 12 designs were handpicked from our Kutch artisan collective — the ones that <em>stopped us mid-selection</em> and made us say yes immediately.</p>
+  </div>
+  <div class="story-divider"></div>
+  <div class="story-item">
+    <div class="story-num">2</div>
+    <div class="story-title">Why Goa?</div>
+    <p class="story-body">Because these bags belong in the world. On a beach at golden hour, carried by a woman who doesn't overthink her style. Goa was the only honest backdrop — <em>free, warm, and unapologetically itself.</em></p>
+  </div>
+  <div class="story-divider"></div>
+  <div class="story-item">
+    <div class="story-num">3</div>
+    <div class="story-title">Why no restock?</div>
+    <p class="story-body">Handcrafted means the artisan moved on. The thread lot changed. The mirror pieces came from a different batch. <em>Your bag is already slightly unique.</em> A restock would just be an imitation of it.</p>
+  </div>
+</div>
+
+<!-- COLLECTION -->
+<div id="collection">
+  <div class="collection-header">
+    <div class="collection-header-left">
+      <div class="col-eyebrow">The collection</div>
+      <h2 class="col-h2">12 pieces. <em>Each one</em><br>its own edition.</h2>
+      <p class="col-note">Every bag you receive may differ slightly from what you see — a bead placed differently, a fringe that falls its own way, a colour that ran a little warmer. That's not a flaw. That's your edition.</p>
+    </div>
+    <div class="filter-row">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Sling Bags</button>
+      <button class="filter-btn">Totes</button>
+      <button class="filter-btn">Clutches</button>
+      <button class="filter-btn">Crossbody</button>
+    </div>
+  </div>
+
+  <div class="product-grid">
+
+    <!-- Featured card -->
+    <div class="product-card featured">
+      <div class="card-img">
+        <img src="IMG_1468.JPG" alt="Banjara Mirror Tote" onerror="this.src='IMG_1655.JPG'">
+        <div class="edition-badge ember">✦ Most Wanted</div>
+        <div class="units-left">4 left</div>
+        <div class="quick-add">Add to Cart — ₹1,499</div>
+      </div>
+      <div class="card-info">
+        <div class="card-craft">Kutch Mirror Work · Banjara</div>
+        <div class="card-name">The Midnight Tote</div>
+        <div class="card-unique">Black canvas with rainbow mirror embroidery and fringe trim. Your piece will carry the same soul — the exact mirror arrangement is the artisan's decision.</div>
+        <div class="card-bottom">
+          <span class="card-price">₹1,499</span>
+          <span class="card-shipping">Free shipping in Mumbai</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="product-card">
+      <div class="card-img">
+        <img src="IMG_1572.JPG" alt="Coin Work Sling">
+        <div class="edition-badge">Edition No. 2</div>
+        <div class="units-left">6 left</div>
+        <div class="quick-add">Add to Cart — ₹1,299</div>
+      </div>
+      <div class="card-info">
+        <div class="card-craft">Banjara Coin Work</div>
+        <div class="card-name">The Nomad Sling</div>
+        <div class="card-unique">Tribal stripes with silver coin trim. Each coin is hand-sewn — placement varies beautifully.</div>
+        <div class="card-bottom">
+          <span class="card-price">₹1,299</span>
+          <span class="card-shipping">COD available</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="product-card">
+      <div class="card-img">
+        <img src="IMG_1469.JPG" alt="Banjara Clutch">
+        <div class="edition-badge gold-bg">✦ Golden Hour Pick</div>
+        <div class="quick-add">Add to Cart — ₹1,199</div>
+      </div>
+      <div class="card-info">
+        <div class="card-craft">Banjara Embroidery</div>
+        <div class="card-name">The Clutch Royale</div>
+        <div class="card-unique">Vibrant patchwork with mirror & pom detail. No two colour combinations are identical.</div>
+        <div class="card-bottom">
+          <span class="card-price">₹1,199</span>
+          <span class="card-shipping">Free returns</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="product-card">
+      <div class="card-img">
+        <img src="IMG_1640.JPG" alt="Canvas Boho Bag">
+        <div class="edition-badge">Edition No. 4</div>
+        <div class="units-left">3 left</div>
+        <div class="quick-add">Add to Cart — ₹999</div>
+      </div>
+      <div class="card-info">
+        <div class="card-craft">Hand Embroidery · Canvas</div>
+        <div class="card-name">The Shore Bag</div>
+        <div class="card-unique">White canvas with bead flower embroidery and pink tassel trim. The beach bag you didn't know you needed.</div>
+        <div class="card-bottom">
+          <span class="card-price">₹999</span>
+          <span class="card-shipping">COD available</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 — featured wide -->
+    <div class="product-card featured">
+      <div class="card-img">
+        <img src="IMG_1254.JPG" alt="Floral Tote Goa" style="object-position: top;">
+        <div class="edition-badge ember">✦ The Hero Shot</div>
+        <div class="units-left">5 left</div>
+        <div class="quick-add">Add to Cart — ₹1,299</div>
+      </div>
+      <div class="card-info">
+        <div class="card-craft">Kashmiri Embroidery · Canvas</div>
+        <div class="card-name">The Garden Tote</div>
+        <div class="card-unique">Hand-embroidered florals on cream canvas with pink chevron handles. Shot at golden hour in Goa — the bag that started this whole edit.</div>
+        <div class="card-bottom">
+          <span class="card-price">₹1,299</span>
+          <span class="card-shipping">Free shipping in Mumbai</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="product-card">
+      <div class="card-img">
+        <img src="IMG_1068.JPG" alt="Evil Eye Bag">
+        <div class="edition-badge">Edition No. 6</div>
+        <div class="quick-add">Add to Cart — ₹1,499</div>
+      </div>
+      <div class="card-info">
+        <div class="card-craft">Bead & Coin Work</div>
+        <div class="card-name">The Evil Eye Clutch</div>
+        <div class="card-unique">Black canvas with evil eye motif in pearl and sequin work. The protective talisman you'll actually want to carry.</div>
+        <div class="card-bottom">
+          <span class="card-price">₹1,499</span>
+          <span class="card-shipping">COD available</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="product-card">
+      <div class="card-img">
+        <img src="IMG_1125.JPG" alt="Cowrie Shell Bag">
+        <div class="edition-badge gold-bg">✦ Sunset Pick</div>
+        <div class="units-left">7 left</div>
+        <div class="quick-add">Add to Cart — ₹1,399</div>
+      </div>
+      <div class="card-info">
+        <div class="card-craft">Cowrie Shell · Jute</div>
+        <div class="card-name">The Shell Clutch</div>
+        <div class="card-unique">Natural jute with cowrie shell semicircle work. Beach-born, festival-ready. The shells are individually placed by hand.</div>
+        <div class="card-bottom">
+          <span class="card-price">₹1,399</span>
+          <span class="card-shipping">Free returns</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="product-card">
+      <div class="card-img">
+        <img src="249132E5-3B3A-41FA-8F21-2579B1EB61D0.JPEG" alt="Cowrie Tassel Bag">
+        <div class="edition-badge">Edition No. 8</div>
+        <div class="units-left">4 left</div>
+        <div class="quick-add">Add to Cart — ₹1,299</div>
+      </div>
+      <div class="card-info">
+        <div class="card-craft">Cowrie Shell · Tassel Work</div>
+        <div class="card-name">The Tribe Bag</div>
+        <div class="card-unique">Patchwork body with cowrie shells and blue tassels. Carries the energy of the whole Kutch desert.</div>
+        <div class="card-bottom">
+          <span class="card-price">₹1,299</span>
+          <span class="card-shipping">COD available</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 9 -->
+    <div class="product-card">
+      <div class="card-img">
+        <img src="IMG_1436.JPG" alt="Purple Crochet Bag">
+        <div class="edition-badge">Edition No. 9</div>
+        <div class="quick-add">Add to Cart — ₹1,199</div>
+      </div>
+      <div class="card-info">
+        <div class="card-craft">Crochet · Handwoven</div>
+        <div class="card-name">The Circle Bag</div>
+        <div class="card-unique">Bold pink & purple crochet circle tote. The one that turns heads on the beach without trying.</div>
+        <div class="card-bottom">
+          <span class="card-price">₹1,199</span>
+          <span class="card-shipping">Free shipping Mumbai</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 10 -->
+    <div class="product-card">
+      <div class="card-img">
+        <img src="Lensa_Imageф.jpeg" alt="Rattan Crossbody">
+        <div class="edition-badge gold-bg">✦ Editor's Choice</div>
+        <div class="units-left">5 left</div>
+        <div class="quick-add">Add to Cart — ₹1,099</div>
+      </div>
+      <div class="card-info">
+        <div class="card-craft">Rattan Weave · Leather Trim</div>
+        <div class="card-name">The Dune Crossbody</div>
+        <div class="card-unique">Natural rattan with leather flap and pearl button. Minimal meets handcrafted. The bag for every trip you take.</div>
+        <div class="card-bottom">
+          <span class="card-price">₹1,099</span>
+          <span class="card-shipping">COD available</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 11 -->
+    <div class="product-card">
+      <div class="card-img">
+        <img src="IMG_0689.jpeg" alt="Evil Eye Tote Beach">
+        <div class="edition-badge ember">✦ The Closer</div>
+        <div class="units-left">3 left</div>
+        <div class="quick-add">Add to Cart — ₹1,599</div>
+      </div>
+      <div class="card-info">
+        <div class="card-craft">Bead Embroidery · Stars & Eye</div>
+        <div class="card-name">The Midnight Eye Tote</div>
+        <div class="card-unique">Black woven tote with evil eye, stars and sequin detail. The one from the Goa shoot everyone asked about first.</div>
+        <div class="card-bottom">
+          <span class="card-price">₹1,599</span>
+          <span class="card-shipping">Free returns</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- UNIQUE PROMISE -->
+<div class="unique-section">
+  <div class="unique-left">
+    <div class="unique-eyebrow">The Wanderer Promise</div>
+    <h2 class="unique-h2">Your bag arrives<br><em>slightly different.</em><br>That's the point.</h2>
+    <p class="unique-body">
+      Every piece in The Wanderer Edit is made by hand in Kutch, Gujarat. The artisans who made them have been embroidering since they were children, taught by their mothers, who were taught by theirs.
+    </p>
+    <p class="unique-body">
+      When something is made by human hands, it carries human variation. The bead that's placed a millimetre left. The thread that ran a shade warmer. The fringe that falls differently on your piece than on the one in the photo.
+    </p>
+    <div class="unique-highlight">
+      <p>"The bag you receive may differ slightly from the photo — a bead placed differently, a fringe that falls its own way. Consider it your edition."</p>
+    </div>
+    <p class="unique-body">
+      This is not a flaw we apologise for. It is the whole reason these bags exist.
+    </p>
+  </div>
+  <div class="unique-right">
+    <div class="unique-img-cell">
+      <img src="IMG_1572.JPG" alt="Craft detail">
+    </div>
+    <div class="unique-quote">
+      <p>"Each stitch is placed by a hand that has placed ten thousand stitches before. The variation is the memory of those hands."</p>
+      <cite>— Heritage Haat, on craft</cite>
+    </div>
+    <div class="unique-quote" style="background: var(--ember);">
+      <p style="color: rgba(255,255,255,0.9);">"No two exactly alike. No restocks. No apologies."</p>
+      <cite style="color: rgba(255,255,255,0.6);">— The Wanderer Edit</cite>
+    </div>
+    <div class="unique-img-cell">
+      <img src="IMG_1125.JPG" alt="Cowrie detail">
+    </div>
+  </div>
+</div>
+
+<!-- SHIPPING BAR -->
+<div class="shipping-bar">
+  <div class="ship-item">
+    <div class="ship-icon">
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="1.2" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 1-.987-1.106v.958"/>
+      </svg>
+    </div>
+    <div>
+      <div class="ship-title">48hr Mumbai Delivery</div>
+      <p class="ship-body">Order by 2pm, receive next day within Mumbai. Rest of India in 3–5 days.</p>
+    </div>
+  </div>
+  <div class="ship-item">
+    <div class="ship-icon">
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="1.2" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"/>
+      </svg>
+    </div>
+    <div>
+      <div class="ship-title">COD Available</div>
+      <p class="ship-body">Pay when you receive. We trust you. No prepayment required across India.</p>
+    </div>
+  </div>
+  <div class="ship-item">
+    <div class="ship-icon">
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="1.2" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"/>
+      </svg>
+    </div>
+    <div>
+      <div class="ship-title">Free Returns, 7 Days</div>
+      <p class="ship-body">Not in love? Return within 7 days for a full refund. No questions, no hoops.</p>
+    </div>
+  </div>
+  <div class="ship-item">
+    <div class="ship-icon">
+      <svg fill="none" viewBox="0 0 24 24" stroke-width="1.2" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/>
+      </svg>
+    </div>
+    <div>
+      <div class="ship-title">Authentically Handmade</div>
+      <p class="ship-body">Every piece made by a named artisan family in Kutch. Not a factory. Not a replica.</p>
+    </div>
+  </div>
+</div>
+
+<!-- INSTAGRAM -->
+<div class="insta-section">
+  <div class="insta-header">
+    <h2 class="insta-h2">As seen in <em>Goa</em></h2>
+    <a href="#" class="insta-handle">@heritagehaat →</a>
+  </div>
+  <div class="insta-grid">
+    <div class="insta-cell"><img src="IMG_1655.JPG" alt=""><div class="insta-overlay"><span class="insta-icon">♡</span></div></div>
+    <div class="insta-cell"><img src="IMG_1572.JPG" alt=""><div class="insta-overlay"><span class="insta-icon">♡</span></div></div>
+    <div class="insta-cell"><img src="IMG_1469.JPG" alt=""><div class="insta-overlay"><span class="insta-icon">♡</span></div></div>
+    <div class="insta-cell"><img src="IMG_1254.JPG" alt="" style="object-position: top;"><div class="insta-overlay"><span class="insta-icon">♡</span></div></div>
+    <div class="insta-cell"><img src="IMG_1125.JPG" alt=""><div class="insta-overlay"><span class="insta-icon">♡</span></div></div>
+    <div class="insta-cell"><img src="IMG_0689.jpeg" alt=""><div class="insta-overlay"><span class="insta-icon">♡</span></div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="#" class="f-logo">Heritage <span>Haat</span></a>
+      <p class="f-tagline">Handcrafted bags from the artisan families of Kutch, Gujarat. Every purchase supports a living tradition.</p>
+      <div class="f-contact">
+        <a href="mailto:order@heritagehaat.com">order@heritagehaat.com</a>
+        <a href="tel:+919322279809">+91 93222 79809</a>
+        <a href="#">WhatsApp us directly</a>
+      </div>
+    </div>
+    <div>
+      <div class="f-col-title">Shop</div>
+      <ul class="f-links">
+        <li><a href="#">The Wanderer Edit</a></li>
+        <li><a href="#">Sling Bags</a></li>
+        <li><a href="#">Totes & Handbags</a></li>
+        <li><a href="#">Clutches & Potlis</a></li>
+        <li><a href="#">Gift Sets</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-title">Brand</div>
+      <ul class="f-links">
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Our Artisans</a></li>
+        <li><a href="#">The Goa Shoot</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-title">Help</div>
+      <ul class="f-links">
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns & Refunds</a></li>
+        <li><a href="#">Track Your Order</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="f-copy">© 2025 Heritage Haat. The Wanderer Edit is a limited release.</p>
+    <p class="f-made">Crafted in <span>Kutch</span> · Shot in <span>Goa</span></p>
+  </div>
+</footer>
+
+<script>
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
