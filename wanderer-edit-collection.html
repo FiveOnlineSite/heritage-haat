@@ -1087,12 +1087,16 @@ footer {
     </div>
   </div>
   <div class="footer-bottom">
-    <p class="f-copy">© 2025 Heritage Haat. The Wanderer Edit is a limited release.</p>
+    <p class="f-copy">© <span class="js-current-year">2025</span> Heritage Haat. The Wanderer Edit is a limited release.</p>
     <p class="f-made">Crafted in <span>Kutch</span> · Shot in <span>Goa</span></p>
   </div>
 </footer>
 
 <script>
+document.querySelectorAll('.js-current-year').forEach((el) => {
+  el.textContent = new Date().getFullYear();
+});
+
 // Filter buttons
 document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', function() {
